@@ -137,6 +137,30 @@ class User extends CI_Controller
 		);
 		$this->load->view('master-layout', $data);
 	}
+	public function get_kabupaten()
+	{
+		$province_id = $this->input->post('province_id');
+		$province_id = $this->security->xss_clean($province_id);
+
+		$regencies = $this->address_db->regencies($province_id);
+		echo json_encode($regencies);
+	}
+	public function get_kecamatan()
+	{
+		$regency_id = $this->input->post('regency_id');
+		$regency_id = $this->security->xss_clean($regency_id);
+
+		$districts = $this->address_db->districts($regency_id);
+		echo json_encode($districts);
+	}
+	public function get_kelurahan()
+	{
+		$district_id = $this->input->post('district_id');
+		$district_id = $this->security->xss_clean($district_id);
+
+		$villages = $this->address_db->villages($district_id);
+		echo json_encode($villages);
+	}
 	public function update_profil()
 	{
 		$username = $this->data['username'];

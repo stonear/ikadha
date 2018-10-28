@@ -439,7 +439,7 @@
 		$('#provinsi').change(function(){
 			var provinsi = $(this).val();
 			$.ajax({
-                url : "<?php echo base_url(); ?>Admin/get_kabupaten",
+                url : "<?php echo base_url(); ?>User/get_kabupaten",
                 method : "POST",
                 data : {province_id: provinsi},
                 async : false,
@@ -465,7 +465,7 @@
 		$('#kabupaten').change(function(){
 			var kabupaten = $(this).val();
 			$.ajax({
-                url : "<?php echo base_url(); ?>Admin/get_kecamatan",
+                url : "<?php echo base_url(); ?>User/get_kecamatan",
                 method : "POST",
                 data : {regency_id: kabupaten},
                 async : false,
@@ -489,7 +489,7 @@
 		$('#kecamatan').change(function(){
 			var kecamatan = $(this).val();
 			$.ajax({
-                url : "<?php echo base_url(); ?>Admin/get_kelurahan",
+                url : "<?php echo base_url(); ?>User/get_kelurahan",
                 method : "POST",
                 data : {district_id: kecamatan},
                 async : false,
