@@ -23,7 +23,7 @@
 				<?php endif ?>
 			</div>
 		</div>
-		<a href="<?php echo base_url() ?>User/kartu" target="_blank" class="btn btn-success btn-block waves-effect">CETAK KARTU ALUMNI</a>
+		<a href="<?php echo base_url() ?>User/kartu" target="_blank" class="btn btn-success btn-block waves-effect">CETAK KARTU ALUMNI</a><br><br>
 	</div>
 	<div class="col-sm-9 col-xs-12">
 		<div class="card">

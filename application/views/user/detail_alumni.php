@@ -1,5 +1,16 @@
+<div class="row clearfix">
+    <div class="col-xs-12">
+        <form autocomplete="off" role="form" action="<?php echo base_url(); ?>User/alumni" method="post">
+            <input type="hidden" name="mts" value="<?php echo $user[0]->lulus_mts ?>">
+            <input type="hidden" name="ma" value="<?php echo $user[0]->lulus_ma ?>">
+            <input type="hidden" name="mmh" value="<?php echo $user[0]->lulus_mmh ?>">
+            <button type="submit" class="btn btn-primary waves-effect"><i class="material-icons">arrow_back</i></button>
+        </form>
+        <br><br>
+    </div>
+</div>
 <div class="row">
-	<div class="col-xs-3">
+	<div class="col-sm-3">
 		<div class="card">
 			<div class="body">
 				<?php $path = FCPATH."uploads/".$user[0]->username.".jpg"; ?>
@@ -12,7 +23,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-xs-9">
+	<div class="col-sm-9">
 		<div class="card">
 			<div class="header">
 		        <h2>Biodata <?php echo $user[0]->nama ?></h2>

@@ -44,6 +44,18 @@
                 </form>
             </div>
         </div>
+        <div class="card">
+            <div class="body">
+                <div class="row">
+                    <div class="col-xs-7" style="margin-bottom: 0;">
+                        <span>Belum punya akun?</span>
+                    </div>
+                    <div class="col-xs-5 align-right" style="margin-bottom: 0;">
+                        <a href="<?php echo base_url(); ?>reg">Daftar di sini.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Jquery Core Js -->
     <script src="<?php echo base_url(); ?>asset/plugins/jquery/jquery.min.js"></script>

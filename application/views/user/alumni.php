@@ -150,7 +150,7 @@
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="<?php echo base_url() ?>User/detail_alumni/<?php echo $a->username ?>" class="btn btn-success btn-xs waves-effect" target="_blank"><i class="material-icons">search</i></a>
+                                        <a href="<?php echo base_url() ?>User/detail_alumni/<?php echo $a->username ?>" class="btn btn-success btn-xs waves-effect"><i class="material-icons">search</i></a>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
