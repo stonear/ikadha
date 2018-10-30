@@ -60,7 +60,7 @@
                         <div class="email"><?php echo $this->session->userdata('nama').' ('.$this->session->userdata('role').')' ?></div>
                     <?php endif ?>
 
-                    <?php if ($role == 'User'): ?>
+                    <!-- <?php if ($role == 'User'): ?>
                         <div class="btn-group user-helper-dropdown">
                             <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                             <ul class="dropdown-menu pull-right">
@@ -69,7 +69,7 @@
                                 <li><a href="<?php echo base_url(); ?>Auth/logout"><i class="material-icons">input</i>Sign Out</a></li>
                             </ul>
                         </div>
-                    <?php endif ?>
+                    <?php endif ?> -->
                 </div>
             </div>
             <!-- #User Info -->

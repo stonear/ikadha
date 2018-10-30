@@ -426,7 +426,7 @@
 	{
 		$("#file").change(function()
 		{
-			$("#labelfile").text("Foto telah terpilih, silahkan click ADD!");
+			$("#labelfile").text("Foto telah terpilih, silahkan klik PERBARUI!");
 		});
 		$('.datepicker').bootstrapMaterialDatePicker({
 			format: 'dddd, DD MMMM YYYY',

@@ -1,8 +1,14 @@
 <?php if ($role == 'User') : ?>
-	<li class="<?php if($title == 'Dashboard' || $title == 'Profil'){echo 'active';} ?>">
+	<li class="<?php if($title == 'Dashboard'){echo 'active';} ?>">
 		<a href="<?php echo base_url(); ?>User">
-			<i class="material-icons <?php if($title == 'Dashboard' || $title == 'Profil'){echo 'col-green';} ?>">home</i>
+			<i class="material-icons <?php if($title == 'Dashboard'){echo 'col-green';} ?>">home</i>
 			<span>Beranda</span>
+		</a>
+	</li>
+	<li class="<?php if($title == 'Profil'){echo 'active';} ?>">
+		<a href="<?php echo base_url(); ?>User/profil">
+			<i class="material-icons <?php if($title == 'Profil'){echo 'col-green';} ?>">edit</i>
+			<span>Profil</span>
 		</a>
 	</li>
 	<li class="<?php if($title == 'Alumni'){echo 'active';} ?>">
