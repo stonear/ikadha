@@ -46,7 +46,7 @@
                     <!-- <img src="<?php echo base_url(); ?>asset/images/user.png" width="48" height="48" alt="User" /> -->
                     <?php $path = FCPATH."uploads/".$username.".jpg"; ?>
                     <?php if (file_exists($path)) : ?>
-                        <img src="<?php echo base_url().'uploads/'.$username.'.jpg' ?>" width="48" height="48" alt="User" style="object-fit: cover; object-position: 50% 0%;"/>
+                        <img src="<?php echo base_url().'uploads/'.$username.'.jpg?' ?>" width="48" height="48" alt="User" style="object-fit: cover; object-position: 50% 0%;"/>
                     <?php else : ?>
                         <img src="<?php echo base_url(); ?>asset/images/user.png" width="48" height="48" alt="User" />
                     <?php endif; ?>
