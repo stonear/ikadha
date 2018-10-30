@@ -17,7 +17,7 @@
 			<div class="body">
 				<?php $path = FCPATH."uploads/".$user[0]->username.".jpg"; ?>
 				<?php if (file_exists($path)): ?>
-					<img class="img-responsive" src="<?php echo base_url().'uploads/'.$user[0]->username.'.jpg' ?>" />
+					<img class="img-responsive" src="<?php echo base_url().'uploads/'.$user[0]->username.'.jpg' ?>?" />
 				<?php else : ?>
 					<img class="img-responsive" src="<?php echo base_url(); ?>asset/images/user.png" />
 				<?php endif ?>
@@ -424,6 +424,10 @@
 <script>
 	$(function ()
 	{
+		$("#file").change(function()
+		{
+			$("#labelfile").text("Foto telah terpilih, silahkan click ADD!");
+		});
 		$('.datepicker').bootstrapMaterialDatePicker({
 			format: 'dddd, DD MMMM YYYY',
 			clearButton: true,
