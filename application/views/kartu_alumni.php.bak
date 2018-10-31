@@ -4,32 +4,24 @@
 	<link href="<?php echo base_url(); ?>asset/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<style>
 		body {
-			background: rgb(204,204,204); 
+		  background: rgb(204,204,204); 
 		}
 		page {
-			background: white;
-			display: block;
-			margin: 0 auto;
-			margin-top: 0.5cm;
-			margin-bottom: 0.5cm;
-			box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
-
-			padding-top: 0.2cm;
-			padding-right: 0.5cm;
-			padding-bottom: 0.5cm;
-			padding-left: 0.5cm;
+		  background: white;
+		  display: block;
+		  margin: 0 auto;
+		  margin-top: 0.5cm;
+		  margin-bottom: 0.5cm;
+		  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+		  padding: 2cm;
 		}
 		page[size="A4"] {  
-			width: 21cm;
-			height: 29.7cm; 
+		  width: 21cm;
+		  height: 29.7cm; 
 		}
-		page[size="ISO-Card"] {
-			width: 9cm;
-			height: 5.5cm; 
-		}
-		.form-control-label {
-			padding-right: 0;
-			padding-left: 0.25;
+		page[size="ISO-Card"] {  
+		  width: 9cm;
+		  height: 5.5cm; 
 		}
 		@media print {
 		  body, page {
@@ -40,21 +32,22 @@
 	</style>
 </head>
 <body>
-	<page size="ISO-Card">
+	<!-- <page size="ISO-Card"> -->
+	<page size="A4">
 		<div style="height: 80%;">
 			<table>
 				<tr>
 					<th class="align-middle">
-						<img src="<?php echo base_url(); ?>asset/images/logo.png" width="50" class="img-responsive center-block" style="margin: 3px">
+						<img src="<?php echo base_url(); ?>asset/images/logo.png" width="110" class="img-responsive center-block" style="margin: 10px">
 					</th>
 					<th>
-						<h1 style="margin: 0; line-height: 1.75; font-size: 20px;">Kartu Tanda Alumni</h1>
-						<h4 style="margin: 0; line-height: 0; font-size: 11px;">Yayasan Pondok Pesantren <b>Darul Huda</b> Mayak</h4>
-						<span style="margin: 0; line-height: 3; font-size: 6px;">Alamat: Jl. Ir. H Juanda Gg VI/38, Mayak Tonatan Ponorogo Jawa Timur 63418</span>
+						<h1 style="margin: 0; font-size: 56px;">Kartu Tanda Alumni</h1>
+						<h4 style="margin: 0; font-size: 23px;">Yayasan Pondok Pesantren <b>Darul Huda</b> Mayak</h4>
+						<span style="margin: 0; line-height: 0; font-size: 10px;">Alamat: Jl. Ir. H Juanda Gg VI/38, Mayak Tonatan Ponorogo Jawa Timur 63418</span>
 					</th>
 				</tr>
 			</table>
-			<hr style="margin-top: 0px; margin-bottom: 5px;">
+			<hr>
 			<div class="row">
 				<div class="col-xs-3" style="border:1px solid rgb(204,204,204); padding: 0.3cm;">
 					<?php $path = FCPATH."uploads/".$user[0]->username.".jpg"; ?>
@@ -65,7 +58,7 @@
 	                <?php endif; ?>
 					<!-- <img src="<?php echo base_url(); ?>asset/images/user.png" width="113.38582677" class="img-responsive center-block"> -->
 				</div>
-				<div class="col-xs-9" style="font-size: 7px; line-height: 0.8;">
+				<div class="col-xs-9" style="font-size: 16px;">
 					<div class="row clearfix">
 						<div class="col-xs-4 form-control-label">
 							<label>NIK</label>
@@ -135,7 +128,7 @@
 							?>
 						</div>
 					</div>
-					<!-- <div class="row clearfix">
+					<div class="row clearfix">
 						<div class="col-xs-4 form-control-label">
 							<label>Lulus MTs</label>
 						</div>
@@ -167,7 +160,7 @@
 								else echo $user[0]->lulus_mmh;
 							?>
 						</div>
-					</div> -->
+					</div>
 					<div class="row clearfix">
 						<div class="col-xs-4 form-control-label">
 							<label>Alamat</label>
@@ -220,7 +213,7 @@
 							?>
 						</div>
 					</div>
-<!-- 					<div class="row clearfix">
+					<div class="row clearfix">
 						<div class="col-xs-4 form-control-label">
 							<label>Pendidikan Terakhir</label>
 						</div>
@@ -278,15 +271,13 @@
 							}
 							?>
 						</div>
-					</div> -->
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row clearfix">
-			<div class="col-xs-4 col-xs-offset-8" style="font-size: 7px; line-height: 0.8;">
+			<div class="col-xs-4 col-xs-offset-8">
 				Tanda tangan, dan lain-lain.
-				<br><br><br><br><br>
-				Nama. ASDFGHJKL
 			</div>
 		</div>
 	</page>
