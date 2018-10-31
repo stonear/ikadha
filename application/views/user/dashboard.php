@@ -122,11 +122,12 @@
                     [
                         <?php
                             $i = 7;
+                            $base = strtotime(date('Y-m',time()) . '-01 00:00:01');
                             while($i)
                             {
                                 if ($i != 1)
                                 {
-                                    echo '"'.date("F", strtotime("-".--$i." month")).'", ';
+                                    echo '"'.date("F", strtotime("-".--$i." month", $base)).'", ';
                                 }
                                 else
                                 {

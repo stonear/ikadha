@@ -26,9 +26,11 @@ class User extends CI_Controller
 	{
 		$jumlah_pengunjung[0] = $this->log_db->jumlah_pengunjung(date("m", strtotime("now")), date("Y", strtotime("now")))[0]->jumlah_pengunjung;
 
+		$base = strtotime(date('Y-m',time()) . '-01 00:00:01');
 		for ($i = 1; $i <= 6; $i++)
 		{
-    		$jumlah_pengunjung[$i] = $this->log_db->jumlah_pengunjung(date("m", strtotime("-".$i." month")), date("Y", strtotime("-".$i." month")))[0]->jumlah_pengunjung;
+			//https://stackoverflow.com/questions/9058523/php-date-and-strtotime-return-wrong-months-on-31st
+    		$jumlah_pengunjung[$i] = $this->log_db->jumlah_pengunjung(date("m", strtotime("-".$i." month", $base)), date("Y", strtotime("-".$i." month", $base)))[0]->jumlah_pengunjung;
 		}
 		$data = array
 		(
