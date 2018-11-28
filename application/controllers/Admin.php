@@ -786,6 +786,8 @@ class Admin extends CI_Controller
 	}
 	public function unduh_alumni()
 	{
+		ini_set('memory_limit', '-1');
+		
 		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
 		$sheet->setCellValue('A1', 'NIK');
