@@ -25,5 +25,20 @@ class Address_db extends CI_Model
 		$query = $this->db->query("SELECT * FROM villages WHERE district_id = ?", array($district_id));
 		return $query->result();
 	}
+	function regencies_all()
+	{
+		$query = $this->db->query("SELECT * FROM regencies");
+		return $query->result();
+	}
+	function districts_all()
+	{
+		$query = $this->db->query("SELECT * FROM districts");
+		return $query->result();
+	}
+	function villages_all()
+	{
+		$query = $this->db->query("SELECT * FROM villages");
+		return $query->result();
+	}
 }
 ?>

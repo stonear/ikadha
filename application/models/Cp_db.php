@@ -10,9 +10,9 @@ class Cp_db extends CI_Model
 		$query = $this->db->query("SELECT * FROM cp");
 		return $query->result();
 	}
-	function update($nama, $no)
+	function update($no)
 	{
-		$query = $this->db->query("UPDATE cp SET nama = ?, no = ? WHERE id = 0", array($nama, $no));
+		$query = $this->db->query("UPDATE cp SET no = ? WHERE id = 0", array($no));
 	}
 }
 ?>

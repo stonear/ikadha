@@ -40,7 +40,7 @@
 	</style>
 </head>
 <body>
-	<page size="ISO-Card">
+	<page size="ISO-Card" id="card">
 		<div style="height: 80%;">
 			<table>
 				<tr>
@@ -65,7 +65,7 @@
 	                <?php endif; ?>
 					<!-- <img src="<?php echo base_url(); ?>asset/images/user.png" width="113.38582677" class="img-responsive center-block"> -->
 				</div>
-				<div class="col-xs-9" style="font-size: 7px; line-height: 0.8;">
+				<div class="col-xs-9" style="font-size: 7px; line-height: 1;">
 					<div class="row clearfix">
 						<div class="col-xs-4 form-control-label">
 							<label>NIK</label>
@@ -102,7 +102,7 @@
 							: <?php echo $user[0]->tempat_lahir ?>, <?php echo $user[0]->tanggal_lahir ?>
 						</div>
 					</div>
-					<div class="row clearfix">
+					<!-- <div class="row clearfix">
 						<div class="col-xs-4 form-control-label">
 							<label>E-mail</label>
 						</div>
@@ -123,7 +123,7 @@
 								else echo $user[0]->noWA;
 							?>
 						</div>
-					</div>
+					</div> -->
 					<div class="row clearfix">
 						<div class="col-xs-4 form-control-label">
 							<label>Masuk Tahun</label>

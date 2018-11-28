@@ -74,6 +74,9 @@
             <button type="submit" class="btn btn-primary btn-block waves-effect"><i class="material-icons">add</i> Tambah Alumni</button>
         </form>
     </div>
+    <div class="col-sm-4">
+        <a href="<?php echo base_url() ?>Admin/unduh_alumni" class="btn btn-success btn-block waves-effect"><i class="material-icons">file_download</i> Unduh Data (XLSX)</a>
+    </div>
 </div>
 <br>
 <div class="row clearfix">

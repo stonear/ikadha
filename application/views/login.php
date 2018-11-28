@@ -34,7 +34,7 @@
                     <?php if (!empty($cp)): ?>
                         <div class="row m-t-15 m-b--20">
                             <div class="col-xs-5">
-                                <a href="#" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="Lupa Password?" data-content="Tenang saja, hubungi narahubung: <?php echo $cp[0]->nama.' ~ '.$cp[0]->no;; ?>">Lupa Kata Sandi?</a>
+                                <a href="#" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="Lupa Password?" data-content="Tenang saja, hubungi narahubung: <?php echo $cp[0]->no;; ?>">Lupa Kata Sandi?</a>
                             </div>
                             <div class="col-xs-7 align-right">
                                 <span>Jangan khawatir, kami dapat membantu.</span>

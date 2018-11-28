@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Admin extends CI_Controller
 {
 	protected $data;
@@ -265,12 +268,10 @@ class Admin extends CI_Controller
 	}
 	public function update_cp()
 	{
-		$nama = $this->input->post('nama');
-		$nama = $this->security->xss_clean($nama);
 		$no = $this->input->post('no');
 		$no = $this->security->xss_clean($no);
 
-		$this->cp_db->update($nama, $no);
+		$this->cp_db->update($no);
 		$this->session->set_flashdata('message', 'Berhasil memperbarui contact person');
 		$this->session->set_flashdata('message_bg', 'bg-green');
 		redirect('Admin/cp');
@@ -782,6 +783,114 @@ class Admin extends CI_Controller
 		}
 		$this->session->set_flashdata('nik', $username);
 		redirect('Admin/update_alumni/');
+	}
+	public function unduh_alumni()
+	{
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'NIK');
+		$sheet->setCellValue('B1', 'Nama');
+		$sheet->setCellValue('C1', 'Jenis Kelamin');
+		$sheet->setCellValue('D1', 'Tempat, Tanggal Lahir');
+		$sheet->setCellValue('E1', 'E-Mail');
+		$sheet->setCellValue('F1', 'No (HP/WA)');
+		$sheet->setCellValue('G1', 'Masuk Tahun');
+		$sheet->setCellValue('H1', 'Lulus MTs');
+		$sheet->setCellValue('I1', 'Lulus MA');
+		$sheet->setCellValue('J1', 'Lulus MMH');
+		$sheet->setCellValue('K1', 'Alamat');
+		$sheet->setCellValue('L1', 'Pendidikan Terakhir');
+		$sheet->setCellValue('M1', 'Pekerjaan');
+
+		$sheet->getStyle("A1:M1")->getFont()->setBold(true);
+		foreach(range('A','M') as $columnID)
+		{
+			$sheet->getColumnDimension($columnID)->setAutoSize(true);
+		}
+
+		$alumni = $this->user_db->get_all();
+		$provinces = $this->address_db->provinces();
+		$regencies = $this->address_db->regencies_all();
+		$districts = $this->address_db->districts_all();
+		$villages = $this->address_db->villages_all();
+		$row = 2;
+		foreach ($alumni as $a)
+		{
+			$sheet->setCellValue('A'.$row, $a->username);
+			$sheet->setCellValue('B'.$row, $a->nama);
+			$sheet->setCellValue('C'.$row, $a->jenis_kelamin);
+			if (!empty($a->tanggal_lahir)) $tanggal_lahir = explode(', ', $a->tanggal_lahir)[1];
+			else $tanggal_lahir = '';
+			$sheet->setCellValue('D'.$row, $a->tempat_lahir.', '.$tanggal_lahir);
+			$sheet->setCellValue('E'.$row, $a->email);
+			$no = '';
+			if (empty($a->noHP)) $no .= '-';
+			else $no .= $a->noHP;
+			$no .= '/';
+			if (empty($a->noWA)) $no .= '-';
+			else $no .= $a->noWA;
+			$sheet->setCellValue('F'.$row, $no);
+			if ($a->masuk_tahun > 0) $sheet->setCellValue('G'.$row, $a->masuk_tahun);
+			else $sheet->setCellValue('G'.$row, '-');
+			if ($a->lulus_mts <= 0) $sheet->setCellValue('H'.$row, '-');
+			else $sheet->setCellValue('H'.$row, $a->lulus_mts);
+			if ($a->lulus_ma <= 0) $sheet->setCellValue('I'.$row, '-');
+			else $sheet->setCellValue('I'.$row, $a->lulus_ma);
+			if ($a->lulus_mmh <= 0) $sheet->setCellValue('J'.$row, '-');
+			else $sheet->setCellValue('J'.$row, $a->lulus_mmh);
+			$sheet->setCellValue('K'.$row, $a->buff_alamat);
+			$pendidikan = '';
+			if ($a->label_pendidikan == '0') $pendidikan .= 'Tidak berpendidikan formal';
+			else
+			{
+				if ($a->label_pendidikan == '1') $pendidikan .= 'SD/MI';
+				elseif ($a->label_pendidikan == '2') $pendidikan .= 'SMP/MTs';
+				elseif ($a->label_pendidikan == '3') $pendidikan .= 'SMA/MA';
+				elseif ($a->label_pendidikan == '4') $pendidikan .= 'D1';
+				elseif ($a->label_pendidikan == '5') $pendidikan .= 'D2';
+				elseif ($a->label_pendidikan == '6') $pendidikan .= 'D3';
+				elseif ($a->label_pendidikan == '7') $pendidikan .= 'D4';
+				elseif ($a->label_pendidikan == '8') $pendidikan .= 'S1';
+				elseif ($a->label_pendidikan == '9') $pendidikan .= 'S2';
+				elseif ($a->label_pendidikan == '10') $pendidikan .= 'S3';
+
+				$pendidikan .= ' - ';
+				$pendidikan .= $a->pendidikan;
+			}
+			$sheet->setCellValue('L'.$row, $pendidikan);
+			$pekerjaan = '';
+			if ($a->label_aktifitas == '1') $pekerjaan .= 'Tidak bekerja';
+			else
+			{
+				if ($a->label_aktifitas == '2') $pekerjaan .= 'Pensiunan/Almarhum';
+				elseif ($a->label_aktifitas == '3') $pekerjaan .= 'PNS';
+				elseif ($a->label_aktifitas == '4') $pekerjaan .= 'TNI/Polisi';
+				elseif ($a->label_aktifitas == '5') $pekerjaan .= 'Guru/Dosen';
+				elseif ($a->label_aktifitas == '6') $pekerjaan .= 'Pegawai Swasta';
+				elseif ($a->label_aktifitas == '7') $pekerjaan .= 'Pengusaha/Wiraswasta';
+				elseif ($a->label_aktifitas == '8') $pekerjaan .= 'Pengacara/Hakim/Jaksa/Notaris';
+				elseif ($a->label_aktifitas == '9') $pekerjaan .= 'Seniman/Pelukis/Artis/Sejenis';
+				elseif ($a->label_aktifitas == '10') $pekerjaan .= 'Dokter/Bidan/Perawat';
+				elseif ($a->label_aktifitas == '11') $pekerjaan .= 'Pilot/Pramugari';
+				elseif ($a->label_aktifitas == '12') $pekerjaan .= 'Pedagang';
+				elseif ($a->label_aktifitas == '13') $pekerjaan .= 'Petani/Peternak';
+				elseif ($a->label_aktifitas == '14') $pekerjaan .= 'Nelayan';
+				elseif ($a->label_aktifitas == '15') $pekerjaan .= 'Buruh (Tani/Pabrik/Bangunan)';
+				elseif ($a->label_aktifitas == '16') $pekerjaan .= 'Sopir/Masinis/Kondektur';
+				elseif ($a->label_aktifitas == '17') $pekerjaan .= 'Politikus';
+				elseif ($a->label_aktifitas == '18') $pekerjaan .= 'Lainnya';
+
+				$pekerjaan .= ' - ';
+				$pekerjaan .= $a->aktifitas;
+			}
+			$sheet->setCellValue('M'.$row, $pekerjaan);
+			$row++;
+		}
+
+		$writer = new Xlsx($spreadsheet);
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    	header('Content-Disposition: attachment; filename="alumni.xlsx"');
+    	$writer->save("php://output");
 	}
 	public function reset_password()
 	{

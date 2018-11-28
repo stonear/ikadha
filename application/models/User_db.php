@@ -126,5 +126,11 @@ class User_db extends CI_Model
 		$query = $this->db->query("SELECT DISTINCT lulus_mmh FROM user ORDER BY lulus_mmh ASC");
 		return $query->result();
 	}
+
+	function get_all()
+	{
+		$query = $this->db->query("SELECT * FROM user");
+		return $query->result();
+	}
 }
 ?>
