@@ -48,7 +48,7 @@
 						<img src="<?php echo base_url(); ?>asset/images/logo.png" width="50" class="img-responsive center-block" style="margin: 3px">
 					</th>
 					<th>
-						<h1 style="margin: 0; line-height: 1.75; font-size: 20px;">Kartu Tanda Alumni</h1>
+						<h1 style="margin: 0; line-height: 1.75; font-size: 19px;">Kartu Tanda Alumni</h1>
 						<h4 style="margin: 0; line-height: 0; font-size: 11px;">Yayasan Pondok Pesantren <b>Darul Huda</b> Mayak</h4>
 						<span style="margin: 0; line-height: 3; font-size: 6px;">Alamat: Jl. Ir. H Juanda Gg VI/38, Mayak Tonatan Ponorogo Jawa Timur 63418</span>
 					</th>
@@ -65,7 +65,7 @@
 	                <?php endif; ?>
 					<!-- <img src="<?php echo base_url(); ?>asset/images/user.png" width="113.38582677" class="img-responsive center-block"> -->
 				</div>
-				<div class="col-xs-9" style="font-size: 7px; line-height: 1;">
+				<div class="col-xs-9" style="font-size: 6px; line-height: 1;">
 					<div class="row clearfix">
 						<div class="col-xs-4 form-control-label">
 							<label>NIK</label>
@@ -283,10 +283,10 @@
 			</div>
 		</div>
 		<div class="row clearfix">
-			<div class="col-xs-4 col-xs-offset-8" style="font-size: 7px; line-height: 0.8;">
-				Tanda tangan, dan lain-lain.
+			<div class="col-xs-4 col-xs-offset-8" style="font-size: 6px; line-height: 0.8;">
+				Mengetahui,
 				<br><br><br><br><br>
-				Nama. ASDFGHJKL
+				Pengurus Ikadha Pusat
 			</div>
 		</div>
 	</page>

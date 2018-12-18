@@ -23,7 +23,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                            <input type="password" class="form-control" name="password" placeholder="Kata Sandi" required>
                         </div>
                     </div>
                     <div class="row">
@@ -34,7 +34,7 @@
                     <?php if (!empty($cp)): ?>
                         <div class="row m-t-15 m-b--20">
                             <div class="col-xs-5">
-                                <a href="#" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="Lupa Password?" data-content="Tenang saja, hubungi narahubung: <?php echo $cp[0]->no;; ?>">Lupa Kata Sandi?</a>
+                                <a href="#" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="Lupa Kata Sandi?" data-content="Tenang saja, hubungi narahubung: <?php echo $cp[0]->no;; ?>">Lupa Kata Sandi?</a>
                             </div>
                             <div class="col-xs-7 align-right">
                                 <span>Jangan khawatir, kami dapat membantu.</span>
