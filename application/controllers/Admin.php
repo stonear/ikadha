@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Admin extends CI_Controller
 {
@@ -723,6 +725,33 @@ class Admin extends CI_Controller
 
 		redirect('Admin/alumni');
 	}
+	// public function kartu_alumni($username = '')
+	// {
+	// 	if ($this->user_db->exist($username))
+	// 	{
+	// 		$user = $this->user_db->read2($username);
+
+	// 		$data = array
+	// 		(
+	// 			'username' => $this->data['username'],
+	// 			'role' => $this->data['role'],
+	// 			'title' => 'Alumni',
+	// 			'module' => 'kartu_alumni',
+
+	// 			'user' => $user,
+	// 			'provinces' => $this->address_db->provinces(),
+	// 			'regencies' => $this->address_db->regencies($user[0]->provinsi),
+	// 			'districts' => $this->address_db->districts($user[0]->kabupaten),
+	// 			'villages' => $this->address_db->villages($user[0]->kecamatan),
+
+	// 			'message' => $this->session->flashdata('message'),
+	// 			'message_bg' => $this->session->flashdata('message_bg')
+	// 		);
+	// 		// $this->load->view('master-layout', $data);
+	// 		$this->load->view('kartu_alumni', $data);
+	// 	}
+	// 	else redirect('Admin/alumni');
+	// }
 	public function kartu_alumni($username = '')
 	{
 		if ($this->user_db->exist($username))
@@ -737,16 +766,25 @@ class Admin extends CI_Controller
 				'module' => 'kartu_alumni',
 
 				'user' => $user,
-				'provinces' => $this->address_db->provinces(),
-				'regencies' => $this->address_db->regencies($user[0]->provinsi),
-				'districts' => $this->address_db->districts($user[0]->kabupaten),
-				'villages' => $this->address_db->villages($user[0]->kecamatan),
 
 				'message' => $this->session->flashdata('message'),
 				'message_bg' => $this->session->flashdata('message_bg')
 			);
-			// $this->load->view('master-layout', $data);
-			$this->load->view('kartu_alumni', $data);
+
+			$html = $this->load->view('kartu_alumni', $data, TRUE);
+			// print_r($html);
+
+			$options = new Options();
+			$options->setIsRemoteEnabled(true);
+			$dompdf = new Dompdf($options);
+			$dompdf->loadHtml($html);
+			// (Optional) Setup the paper size and orientation
+			$dompdf->setPaper('A7', 'landscape');
+			// Render the HTML as PDF
+			$dompdf->render();
+			// Output the generated PDF to Browser
+			$dompdf->stream($user[0]->nama, array("Attachment" => false));
+
 		}
 		else redirect('Admin/alumni');
 	}
