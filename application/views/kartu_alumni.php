@@ -2,8 +2,8 @@
 <html>
 <head>
 	<style>
-		@page { margin: 10px; }
-		body { margin: 10px; }
+		@page { margin: 7px; }
+		body { margin: 7px; }
 	</style>
 </head>
 <body>
@@ -13,9 +13,9 @@
 			<td style="white-space: nowrap;">
 				<?php $path = FCPATH."uploads/".$user[0]->username.".jpg"; ?>
                 <?php if (file_exists($path)) : ?>
-                    <img src="<?php echo base_url().'uploads/'.$user[0]->username.'.jpg' ?>" style="width: 70;  height: auto; object-fit: cover; object-position: 50% 0%; border:1px solid rgb(204,204,204);" alt="User" />
+                    <img src="<?php echo base_url().'uploads/'.$user[0]->username.'.jpg' ?>" style="width: 65;  height: auto; object-fit: cover; object-position: 50% 0%; border:1px solid rgb(204,204,204);" alt="User" />
                 <?php else : ?>
-                    <img src="<?php echo base_url(); ?>asset/images/user.png" style="width: 70;  height: auto; border:1px solid rgb(204,204,204);" alt="User" />
+                    <img src="<?php echo base_url(); ?>asset/images/user.png" style="width: 65;  height: auto; border:1px solid rgb(204,204,204);" alt="User" />
                 <?php endif; ?>
 			</td>
 			<td style="width: 100%;">
@@ -58,7 +58,7 @@
 					<tr>
 						<th></th>
 						<td style="vertical-align:bottom;">
-							<br>
+							<br><br>
 							<?php for($i=0;$i<25;$i++) echo '&nbsp;'; ?>Mengetahui,
 							<br><br><br><br>
 							<?php for($i=0;$i<25;$i++) echo '&nbsp;'; ?>Pengurus Ikadha Pusat
