@@ -40,5 +40,25 @@ class Address_db extends CI_Model
 		$query = $this->db->query("SELECT * FROM villages");
 		return $query->result();
 	}
+	function province_id()
+	{
+		$query = $this->db->query("SELECT MAX(id) AS id FROM provinces");
+		return $query->result();
+	}
+	function regency_id($province_id)
+	{
+		$query = $this->db->query("SELECT MAX(id) AS id FROM regencies WHERE province_id = ?", array($province_id));
+		return $query->result();
+	}
+	function district_id($regency_id)
+	{
+		$query = $this->db->query("SELECT MAX(id) AS id FROM districts WHERE regency_id = ?", array($regency_id));
+		return $query->result();
+	}
+	function village_id($district_id)
+	{
+		$query = $this->db->query("SELECT MAX(id) AS id FROM villages WHERE district_id = ?", array($district_id));
+		return $query->result();
+	}
 }
 ?>

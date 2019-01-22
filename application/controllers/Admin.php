@@ -951,4 +951,93 @@ class Admin extends CI_Controller
 		}
 		redirect('Admin');
 	}
+	public function daerah($id = 1)
+	{
+		$this->load->library('grocery_CRUD');
+		if ($id == 1)
+		{
+			$crud = new grocery_CRUD();
+			$crud->set_table('provinces');
+			$crud->columns('id','name');
+			$crud->display_as('name','Nama Provinsi');
+			$crud->set_subject('Provinsi');
+			$crud->field_type('id','invisible');
+			$crud->callback_before_insert(array($this, 'id_provinsi'));
+			$output = $crud->render();
+		}
+		else if ($id == 2)
+		{
+			$crud = new grocery_CRUD();
+			$crud->set_table('regencies');
+			$crud->columns('id','province_id','name');
+			$crud->display_as('province_id','Provinsi')
+				 ->display_as('name','Nama Kabupaten/Kota');
+			$crud->set_subject('Kabupaten/Kota');
+			$crud->field_type('id','invisible');
+			$crud->set_relation('province_id','provinces','{id} - {name}');
+			$crud->callback_before_insert(array($this, 'id_kabupaten'));
+			$output = $crud->render();
+		}
+		else if ($id == 3)
+		{
+			$crud = new grocery_CRUD();
+			$crud->set_table('districts');
+			$crud->columns('id','regency_id','name');
+			$crud->display_as('regency_id','Kabupaten/Kota')
+				 ->display_as('name','Nama Kecamatan');
+			$crud->set_subject('Kecamatan');
+			$crud->field_type('id','invisible');
+			$crud->set_relation('regency_id','regencies','{id} - {name}');
+			$crud->callback_before_insert(array($this, 'id_kecamatan'));
+			$output = $crud->render();
+		}
+		else if ($id == 4)
+		{
+			$crud = new grocery_CRUD();
+			$crud->set_table('villages');
+			$crud->columns('id','district_id','name');
+			$crud->display_as('district_id','Kecamatan')
+				 ->display_as('name','Nama Kelurahan/Desa');
+			$crud->set_subject('Kelurahan/Desa');
+			$crud->field_type('id','invisible');
+			$crud->set_relation('district_id','districts','{id} - {name}');
+			$crud->callback_before_insert(array($this, 'id_desa'));
+			$output = $crud->render();
+		}
+		else redirect('Admin/daerah/1');
+		
+		$data = array
+		(
+			'username' => $this->data['username'],
+			'role' => $this->data['role'],
+			'title' => 'Daerah',
+			'module' => 'daerah',
+
+			'output' => $output,
+
+			'message' => $this->session->flashdata('message'),
+			'message_bg' => $this->session->flashdata('message_bg')
+		);
+		$this->load->view('master-layout', $data);
+	}
+	function id_provinsi($post_array)
+	{
+		$post_array['id'] = $this->address_db->province_id()[0]->id + 1;
+		return $post_array;
+	}
+	function id_kabupaten($post_array)
+	{
+		$post_array['id'] = $this->address_db->regency_id($post_array['province_id'])[0]->id + 1;
+		return $post_array;
+	}
+	function id_kecamatan($post_array)
+	{
+		$post_array['id'] = $this->address_db->district_id($post_array['regency_id'])[0]->id + 1;
+		return $post_array;
+	}
+	function id_desa($post_array)
+	{
+		$post_array['id'] = $this->address_db->village_id($post_array['district_id'])[0]->id + 1;
+		return $post_array;
+	}
 }

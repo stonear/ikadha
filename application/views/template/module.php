@@ -54,6 +54,12 @@
 			<span>Admin</span>
 		</a>
 	</li>
+	<li class="<?php if($title == 'Daerah'){echo 'active';} ?>">
+		<a href="<?php echo base_url(); ?>Admin/daerah">
+			<i class="material-icons <?php if($title == 'Daerah'){echo 'col-green';} ?>">location_on</i>
+			<span>Data Daerah</span>
+		</a>
+	</li>
 	<li class="<?php if($title == 'Contact Person'){echo 'active';} ?>">
 		<a href="<?php echo base_url(); ?>Admin/cp">
 			<i class="material-icons <?php if($title == 'Contact Person'){echo 'col-green';} ?>">call</i>

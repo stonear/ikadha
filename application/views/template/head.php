@@ -22,6 +22,12 @@
   <link href="<?php echo base_url(); ?>asset/plugins/animate-css/animate.css" rel="stylesheet" />
   <!-- JQuery DataTable Css -->
   <link href="<?php echo base_url(); ?>asset/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+  <!-- CRUD -->
+  <?php if (!empty($output)) : ?>
+    <?php foreach($output->css_files as $file): ?>
+      <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+    <?php endforeach ?>
+  <?php endif ?>
   <!-- Custom Css -->
   <link href="<?php echo base_url(); ?>asset/css/style.css" rel="stylesheet">
   <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
@@ -57,6 +63,12 @@
   <script src="<?php echo base_url(); ?>asset/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
   <script src="<?php echo base_url(); ?>asset/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
   <script src="<?php echo base_url(); ?>asset/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+  <!-- CRUD -->
+  <?php if (!empty($output)) : ?>
+    <?php foreach($output->js_files as $file): ?>
+      <script src="<?php echo $file; ?>"></script>
+    <?php endforeach; ?>
+  <?php endif ?>
   <!-- Custom Js -->
   <script src="<?php echo base_url(); ?>asset/js/admin.js"></script>
   <!-- Demo Js -->
