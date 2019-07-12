@@ -859,7 +859,12 @@ class Admin extends CI_Controller
 			$sheet->setCellValue('A'.$row, $a->username);
 			$sheet->setCellValue('B'.$row, $a->nama);
 			$sheet->setCellValue('C'.$row, $a->jenis_kelamin);
-			if (!empty($a->tanggal_lahir)) $tanggal_lahir = explode(', ', $a->tanggal_lahir)[1];
+			if (!empty($a->tanggal_lahir))
+			{
+				$tanggal_lahir = explode(', ', $a->tanggal_lahir);
+				if(isset($tanggal_lahir[1])) $tanggal_lahir = $tanggal_lahir[1];
+				else $tanggal_lahir = '';
+			}
 			else $tanggal_lahir = '';
 			$sheet->setCellValue('D'.$row, $a->tempat_lahir.', '.$tanggal_lahir);
 			$sheet->setCellValue('E'.$row, $a->email);
